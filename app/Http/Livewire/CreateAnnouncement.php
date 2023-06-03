@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Announcement;
+use Illuminate\Support\Facades\Auth;
 
 class CreateAnnouncement extends Component
 {
@@ -35,8 +36,8 @@ class CreateAnnouncement extends Component
         //per collegare ad ogni annuncio la categoria scelta dall'utente
         $category=Category::find($this->category);
 
-        //per creare l'annuncio con anche la categoria collegata
-        $category->announcements()->create(
+        //per creare l'annuncio con la categoria collegata
+        $announcement = $category->announcements()->create(
             [
                 //campi dell'articolo (esclusa la categoria)
                 'title'=>$this->title,
@@ -44,6 +45,9 @@ class CreateAnnouncement extends Component
                 'price'=>$this->price,
             ]
         );
+
+        //per collegare l'utente all'annuncio 
+        Auth::user()->announcements()->save($announcement);
 
         //MESSAGGIO: ANNUNCIO CREATO CORRETTAMENTE
         session()->flash('message', 'DRINK creato con successo');

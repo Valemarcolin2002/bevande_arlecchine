@@ -33,9 +33,13 @@
         </li>
 
         <!-- CREA ANNUNCIO -->
+        @guest
+        <div class="none"></div>
+        @else
         <li class="nav-item">
           <a class="nav-link" href="{{route('announcements.create')}}">crea annuncio</a>
         </li>
+        @endguest
 
         <!-- LOGIN/REGISTER -->
 
