@@ -15,20 +15,30 @@
 
         <!-- home -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+          <a class="nav-link" aria-current="page" href="{{route('welcome')}}">Home</a>
         </li>
 
-        <!-- lista link -->
+        <!-- tutti gli annunci -->
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{route('announcements.index')}}">Tutti gli annunci</a>
+        </li>
+
+        <!-- CATEGORIE -->
         <li class="nav-item dropdown">
-          <!-- dropdown -->
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
+          <!-- bottone dropdown -->
+          <a class="nav-link dropdown-toggle" href="#" id="categoriesDripdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categorie
           </a>
-          <!-- lista link -->
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <!-- lista categorie -->
+          <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+            @foreach ($categories as $category)
+              <li>
+                <a class="dropdown-item" href="{{route('categoryShow', compact('category'))}}">{{($category->name)}}</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            @endforeach
           </ul>
         </li>
 

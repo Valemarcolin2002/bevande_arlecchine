@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AnnouncementController;
 
 /*
@@ -15,9 +16,21 @@ use App\Http\Controllers\AnnouncementController;
 */
 
 //HOME
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [FrontController::class, 'welcome'])->name('welcome');
 
-//CREA ANNUNCIO
-Route::get('/nuovo/annuncio',[AnnouncementController::class, 'createAnnouncement'])->middleware('auth')->name('announcements.create');
+//DETTAGLIO CATEGORIA (mostra gli annunci di una categoria)
+Route::get('/categoria/{category}', [FrontController::class, 'categoryShow'])->name('categoryShow');
+
+
+//ANNUNCIO
+
+    //TUTTI gli ANNUNCI
+    Route::get('/tutti/annunci', [AnnouncementController::class, 'indexAnnouncement'])->middleware('auth')->name('announcements.index');
+
+    //DETTAGLIO ANNUNCIO
+    Route::get('/dettaglio/annuncio/{announcement}', [AnnouncementController::class, 'showAnnouncement'])->middleware('auth')->name('announcements.show');
+
+    //CREA ANNUNCIO
+    Route::get('/nuovo/annuncio',[AnnouncementController::class, 'createAnnouncement'])->middleware('auth')->name('announcements.create');
+        
+
