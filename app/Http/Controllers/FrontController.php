@@ -12,7 +12,7 @@ class FrontController extends Controller
     public function welcome()
     {
         //per passare gli ultimi 6 annunci nella pagina home
-        $announcements = Announcement::take(6)->get()->sortByDesc('created_at');
+        $announcements = Announcement::where('is_accepted', true)->take(6)->get()->sortByDesc('created_at');
 
         //riporta alla vista home
         return view('welcome', compact('announcements'));

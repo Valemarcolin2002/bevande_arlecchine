@@ -11,7 +11,7 @@ class AnnouncementController extends Controller
     public function indexAnnouncement()
     {
         //per passare tutti gli annunci
-        $announcements = Announcement::paginate(6); 
+        $announcements = Announcement::where('is_accepted', true)->paginate(6); 
         //per tornare la vista
         return view('announcements.index', compact('announcements'));
     }

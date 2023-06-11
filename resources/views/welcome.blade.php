@@ -1,7 +1,11 @@
 <x-layout>
     
-    <div class="css">prova css</div>
-    <div class="text-primary">prova bootstrap</div>
+    <!-- messaggio -->
+    @if (session()->has('message'))
+        <div class="flex flex-row justify-center my-2 alert alert-success">
+            {{session('message')}}
+        </div>
+    @endif
 
     <div class="container">
         <div class="row">

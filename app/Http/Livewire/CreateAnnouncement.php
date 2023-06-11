@@ -73,11 +73,6 @@ class CreateAnnouncement extends Component
     //funzione per TORNARE la VISTA
     public function render()
     {
-        return view('livewire.create-announcement',
-        //per passare le categorie alla vista create-announcement.blade.php
-            [
-                'categories'=>Category::all()
-            ]
-        );
+        return view('livewire.create-announcement');
     }
 }

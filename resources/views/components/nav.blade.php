@@ -44,40 +44,54 @@
 
         <!-- CREA ANNUNCIO -->
         @guest
-        <div class="none"></div>
+          <div class="none"></div>
         @else
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('announcements.create')}}">crea annuncio</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('announcements.create')}}">crea annuncio</a>
+          </li>
         @endguest
+
 
         <!-- LOGIN/REGISTER -->
 
         <!-- se l'utente non è loggato -->
         @guest
-        <!-- register -->
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('register')}}">registrati</a>
-        </li>
-        <!-- login -->
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('login')}}">login</a>
-        </li>
-
+          <!-- register -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('register')}}">registrati</a>
+          </li>
+          <!-- login -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('login')}}">login</a>
+          </li>
         <!-- se l'utente è loggato -->
-        @else
-        <!-- nome utente -->
-        <li class="nav-item">
-          <a class="nav-link">{{Auth::user()->name}}</a>
-        </li>
-        <!-- bottone logout -->
-        <li>
-          <form action="{{route('logout')}}" method="post">
-            @csrf
-            <button class="btn btn-danger" type="submit">LOGOUT</button>
-          </form>
-        </li>
 
+        @else
+
+          <!-- PAGINA REVISORE  -->
+          @if(Auth::user()->is_revisor)
+            <li class="nav-item">
+              <a aria-current="page" href="{{route('revisor.index')}}" class="nav-link btn btn-outline-success btn-sm position-relative">
+                Zona revisore
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{App\Models\Announcement::toBeRevisionedCount()}}
+                  <span class="visually-hidden">annunci da controllare</span>
+                </span>
+              </a>
+            </li>
+          @endif
+
+          <!-- nome utente -->
+          <li class="nav-item">
+            <a class="nav-link">{{Auth::user()->name}}</a>
+          </li>
+          <!-- bottone logout -->
+          <li>
+            <form action="{{route('logout')}}" method="post">
+              @csrf
+              <button class="btn btn-danger" type="submit">LOGOUT</button>
+            </form>
+          </li>
         @endguest
 
       </ul>  
