@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "watch": "vite build --watch"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
@@ -13,5 +14,9 @@
         "postcss": "^8.1.14",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+        
+    },
+    "dependencies": {
+        "flag-icon-css": "^4.1.7"
     }
 }

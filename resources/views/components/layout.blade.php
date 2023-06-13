@@ -10,7 +10,7 @@
     @livewireStyles
 
     <!-- LINK FILE CSS e JS-->
-    @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/bootstrap.js',])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/bootstrap.js',])
     
 </head>
     <body>

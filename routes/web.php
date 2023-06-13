@@ -22,7 +22,6 @@ Route::get('/', [FrontController::class, 'welcome'])->name('welcome');
 //DETTAGLIO CATEGORIA (mostra gli annunci di una categoria)
 Route::get('/categoria/{category}', [FrontController::class, 'categoryShow'])->name('categoryShow');
 
-
 //ANNUNCIO
 
     //TUTTI gli ANNUNCI
@@ -54,4 +53,7 @@ Route::get('/categoria/{category}', [FrontController::class, 'categoryShow'])->n
     Route::patch('/rifiuta/annuncio/{announcement}', [RevisorController::class, 'rejectAnnouncement'])->middleware('IsRevisor')->name('revisor.reject_announcement');
 
 //fine revisore
+
+//CAMBIO LINGUA
+Route::post('/lingua/{lang}', [FrontController::class, 'setLanguage'])->name('set_language_locale');
 

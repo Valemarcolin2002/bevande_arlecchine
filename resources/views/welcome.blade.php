@@ -1,4 +1,6 @@
 <x-layout>
+
+    <div class="css">prova css </div>
     
     <!-- messaggio -->
     @if (session()->has('message'))

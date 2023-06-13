@@ -20,13 +20,13 @@
 
         <!-- tutti gli annunci -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('announcements.index')}}">Tutti gli annunci</a>
+          <a class="nav-link" aria-current="page" href="{{route('announcements.index')}}">{{__('ui.allAnnouncements')}}</a>
         </li>
 
         <!-- CATEGORIE -->
         <li class="nav-item dropdown">
           <!-- bottone dropdown -->
-          <a class="nav-link dropdown-toggle" href="#" id="categoriesDripdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Categorie
           </a>
           <!-- lista categorie -->
@@ -51,6 +51,26 @@
           </li>
         @endguest
 
+        <!-- CAMBIO LINGUA -->
+        <li class="nav-item dropdown">
+          <!-- bottone dropdown -->
+          <a class="nav-link dropdown-toggle" href="#" id="lenguagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Lingua
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="lenguagesDropdown">
+            <!-- ITALIANO -->
+            <li class="nav-item">
+              <x-_locale lang='it' nation='it'/>
+            </li>
+            <!-- INGLESE -->
+            <li class="nav-item">
+              <x-_locale lang='en' nation='eng'/>
+            </li>
+            <!-- SPAGNOLO -->
+            <li class="nav-item">
+              <x-_locale lang='es' nation='es'/>
+            </li>           
+          </ul>
 
         <!-- LOGIN/REGISTER -->
 
