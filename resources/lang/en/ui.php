@@ -1,5 +1,7 @@
 <?php
 return [
-    'allAnnouncements'=>'all announcements'
+    'allAnnouncements'=>'all announcements',
+    'Delate'=>'Delate',
+    'PhotoPreview'=>'Photo preview:'
 ];
 

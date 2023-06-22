@@ -71,6 +71,7 @@
               <x-_locale lang='es' nation='es'/>
             </li>           
           </ul>
+        </li>
 
         <!-- LOGIN/REGISTER -->
 

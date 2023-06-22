@@ -20,33 +20,49 @@
 
                     <!-- CAROSELLO IMMAGINI -->
                     <div id="showCarousel" class="carousel slide" data-bs-ride="carousel">
+
                         <!-- immagini -->
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://picsum.photos/id/27/1200/200" alt="..." class="img-fluid p-3 rounded">
+                        @if ($announcement_to_check->images)
+                            <div class="carousel-inner">
+                                @foreach($announcement_to_check->images as $image)
+                                    <div class="carousel-item @if($loop->first)active @endif">
+                                        <img src="{{$announcement->images()->first()->getUrl(400,300)}}" alt="..." class="img-fluid p-3 rounded">
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="carousel-item active">
-                                <img src="https://picsum.photos/id/28/1200/200" alt="..." class="img-fluid p-3 rounded">
+                        @else
+                        <!-- immagini che si vedono l'annuncio non ha immagini -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
+                                </div>
+                                <div class="carousel-item ">
+                                    <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
+                                </div>
+                                <div class="carousel-item ">
+                                    <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
+                                </div>
                             </div>
-                            <div class="carousel-item active">
-                                <img src="https://picsum.photos/id/29/1200/200" alt="..." class="img-fluid p-3 rounded">
-                            </div>
-                        </div>
+                        @endif
+
                         <!-- bottone vai alla precedente -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#showCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="carousel-control-prev-icon border border-secondary bg-dark" aria-hidden="true"></span>
+                            <span class="visually-hidden border border-secondary bg-dark">Previous</span>
                         </button>
+
                         <!-- bottone vai alla prossima -->
                         <button class="carousel-control-next" type="button" data-bs-target="#showCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                            <span class="carousel-control-next-icon border border-secondary bg-dark" aria-hidden="true"></span>
+                            <span class="visually-hidden border border-secondary bg-dark">Next</span>
                         </button>
+
                     </div>
 
                     <!-- PARTI ANNUNCIO -->
                     <h5 class="card-title">Titolo: {{$announcement_to_check->title}}</h5>
                     <p class="card-text">Descrizione: {{$announcement_to_check->body}}</p>
+                    <p class="card-text">Prezzo: {{$announcement_to_check->price}}€</p>
                     <p class="card-footer">Pubblicato il: {{$announcement_to_check->created_at}}
                     </p>
 

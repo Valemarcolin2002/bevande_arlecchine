@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Images;
 use App\Models\Category;
 use App\Models\Announcement;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,14 @@ class Announcement extends Model
     use HasFactory;
     protected $fillable = ['title', 'body', 'price',];
 
-    //relazione one to many con la tabella delle categorie
+    //relazione ONE TO MANY con la tabella delle IMMAGINI
+    public function images()
+    {
+        //un annuncio potrà avere più immagini
+        return $this->hasMany(Images::class);
+    }
+
+    //relazione ONE TO MANY con la tabella delle CATEGORIE
     public function category()
     {
         //un annuncio apparterrà ad una sola categoria

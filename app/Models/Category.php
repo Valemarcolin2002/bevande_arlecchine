@@ -11,10 +11,10 @@ class Category extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
-    //relazione one to many con la tabella degli annunci
+    //relazione ONE TO MANY con la tabella degli ANNUNCI
     public function announcements()
     {
-        //una categoria avrà più annunci
+        //una categoria potrà avere più annunci
         return $this->hasMany(Announcement::class);
     }
 }
