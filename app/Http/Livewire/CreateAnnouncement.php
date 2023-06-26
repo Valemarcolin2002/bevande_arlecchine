@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Jobs\ResizeImage;
 use App\Models\Announcement;
 use Livewire\WithFileUploads;
+use App\Jobs\GoogleVisionLabelImage;
+use App\Jobs\GoogleVisionSafeSearch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -111,8 +113,13 @@ class CreateAnnouncement extends Component
                 $newFileName = "announcements/{$announcement->id}";
                 //creiamo una nuova cartella announcement con all'interno una cartella con l'id dell'annuncio, ogni annuncio avrà le proprie immagini con il resize all'interno di questa cartella
                 $newImage = $announcement->images()->create(['path'=>$image->store($newFileName,'public')]);
+
                 //avviamo il job ResizeImage in asincrono, che andrà a croppare l'immagine in background e la salverà nella cartella announcements tramite l'id
                 dispatch(new ResizeImage($newImage->path , 400 , 300));
+                //avviamo il job GoogleVisionSafeSearch, che andrà ad analizzare l'immagine 
+                dispatch(new GoogleVisionSafeSearch($newImage->id));
+                //avviamo il job GoogleVisionLabelImage, che andrà a calcolare il contenuto delle immagini
+                dispatch(new GoogleVisionLabelImage($newImage->id));
 
             }
 

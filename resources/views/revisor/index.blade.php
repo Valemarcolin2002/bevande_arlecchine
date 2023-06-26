@@ -19,43 +19,61 @@
                 <div class="col-12">
 
                     <!-- CAROSELLO IMMAGINI -->
-                    <div id="showCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="gallery" class="bg-white" ">
 
                         <!-- immagini -->
-                        @if ($announcement_to_check->images)
-                            <div class="carousel-inner">
-                                @foreach($announcement_to_check->images as $image)
-                                    <div class="carousel-item @if($loop->first)active @endif">
-                                        <img src="{{$announcement->images()->first()->getUrl(400,300)}}" alt="..." class="img-fluid p-3 rounded">
+                        @if ($announcement_to_check->images)                          
+                            @foreach($announcement_to_check->images as $image)
+                                <div class="card-mb-3">
+                                    <div class="row p-2">
+                                            <!-- IMMAGINE -->
+                                        <div class="col-12 col-md-6">
+                                            <img src="{{$image->getUrl(400,300)}}" alt="..." class="img-fluid p-3 rounded">
+                                        </div>
+                                        <!-- ANALISI IMMAGINE -->
+                                        <div class="col-md-3 border-end">
+                                            <h5 class="tc-accent mt-3 border-end">Tags</h5>
+                                            <div class="p-2">
+                                                @if($image->labels)
+                                                    @foreach($image->labels as $label)
+                                                        <p class="d-inline">{{$label}},</p>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card-body">
+                                                <h5 class="tc-accent">Revisione immagini</h5>
+                                                <p>Adulti:
+                                                    <span class="{{$image->adult}}"></span>
+                                                </p>
+                                                <p>Satira:
+                                                    <span class="{{$image->spoof}}"></span>
+                                                </p>
+                                                <p>Medicina:
+                                                    <span class="{{$image->medical}}"></span>
+                                                </p>
+                                                <p>Violenza:
+                                                    <span class="{{$image->violence}}"></span>
+                                                </p>
+                                                <p>Contenuto Ammiccante:
+                                                    <span class="{{$image->racy}}"></span>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>          
+                            @endforeach                       
                         @else
                         <!-- immagini che si vedono l'annuncio non ha immagini -->
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
-                                </div>
-                                <div class="carousel-item ">
-                                    <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
-                                </div>
-                                <div class="carousel-item ">
-                                    <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
+                            <div class="card-mb-3">
+                                <div class="row p-2">
+                                    <div class="col-12 col-md-6">
+                                        <img src="https://picsum.photos/200" alt="..." class="img-fluid p-3 rounded">
+                                    </div>
                                 </div>
                             </div>
                         @endif
-
-                        <!-- bottone vai alla precedente -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#showCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon border border-secondary bg-dark" aria-hidden="true"></span>
-                            <span class="visually-hidden border border-secondary bg-dark">Previous</span>
-                        </button>
-
-                        <!-- bottone vai alla prossima -->
-                        <button class="carousel-control-next" type="button" data-bs-target="#showCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon border border-secondary bg-dark" aria-hidden="true"></span>
-                            <span class="visually-hidden border border-secondary bg-dark">Next</span>
-                        </button>
 
                     </div>
 

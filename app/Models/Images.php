@@ -14,6 +14,11 @@ class Images extends Model
 
     protected $fillable = ['path'];
 
+    //per permettere a questo modello di inserire array nel database
+    protected $casts = [
+        'labels' => 'array'
+    ];
+
     //relazione ONE TO MANY con la tabella degli ANNUNCI
     public function announcement()
     {
