@@ -27,4 +27,15 @@ class AnnouncementController extends Controller
     {
         return view('announcements.create');
     }
+
+    //torna la vista con gli annunci cercati
+    public function searchAnnouncements(Request $request)
+    {
+        //per passare solo gli annunci cercatu
+        $announcements = Announcement::search($request->searched)->where('is_accepted', true)->paginate(6);
+
+        return view('announcements.index', compact('announcements'));
+    }
 }
+
+

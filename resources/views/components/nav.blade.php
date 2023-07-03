@@ -115,7 +115,13 @@
           </li>
         @endguest
 
-      </ul>  
+      </ul> 
+      
+      <!-- BARRA di RICERCA -->
+      <form action="{{route('announcements.search')}}" method="GET" class="d-flex">
+        <input name="searched" type="search" class="form-control me-2" placeholder="Search" arialabels="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
 
     </div>
 

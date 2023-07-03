@@ -32,6 +32,9 @@ Route::get('/categoria/{category}', [FrontController::class, 'categoryShow'])->n
 
     //CREA ANNUNCIO
     Route::get('/nuovo/annuncio',[AnnouncementController::class, 'createAnnouncement'])->middleware('auth')->name('announcements.create');
+
+    //CERCA ANNUNCIO
+    Route::get('/ricerca/annuncio', [AnnouncementController::class, 'searchAnnouncements'])->name('announcements.search');
         
 //fine anuncio
 
